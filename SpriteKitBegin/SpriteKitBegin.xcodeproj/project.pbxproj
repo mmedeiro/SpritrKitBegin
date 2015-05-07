@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4B6832641AFAAD0300EB08FC /* GameScenePlayAgain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B6832631AFAAD0300EB08FC /* GameScenePlayAgain.swift */; };
 		4BDB75FB1AF7F88E002DAC8A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDB75FA1AF7F88E002DAC8A /* AppDelegate.swift */; };
 		4BDB75FF1AF7F88E002DAC8A /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDB75FE1AF7F88E002DAC8A /* GameScene.swift */; };
 		4BDB76011AF7F88E002DAC8A /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4BDB76001AF7F88E002DAC8A /* GameViewController.swift */; };
@@ -30,6 +31,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B6832631AFAAD0300EB08FC /* GameScenePlayAgain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameScenePlayAgain.swift; sourceTree = "<group>"; };
 		4BDB75F51AF7F88E002DAC8A /* SpriteKitBegin.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpriteKitBegin.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4BDB75F91AF7F88E002DAC8A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4BDB75FA1AF7F88E002DAC8A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 				4BDB75FA1AF7F88E002DAC8A /* AppDelegate.swift */,
 				4BDB76231AF80D91002DAC8A /* GameOverScene.swift */,
 				4BDB75FE1AF7F88E002DAC8A /* GameScene.swift */,
+				4B6832631AFAAD0300EB08FC /* GameScenePlayAgain.swift */,
 				4BDB76001AF7F88E002DAC8A /* GameViewController.swift */,
 				4BDB76021AF7F88E002DAC8A /* Main.storyboard */,
 				4BDB761E1AF80CB5002DAC8A /* Sounds */,
@@ -236,6 +239,7 @@
 			files = (
 				4BDB75FF1AF7F88E002DAC8A /* GameScene.swift in Sources */,
 				4BDB76011AF7F88E002DAC8A /* GameViewController.swift in Sources */,
+				4B6832641AFAAD0300EB08FC /* GameScenePlayAgain.swift in Sources */,
 				4BDB76241AF80D91002DAC8A /* GameOverScene.swift in Sources */,
 				4BDB75FB1AF7F88E002DAC8A /* AppDelegate.swift in Sources */,
 			);
@@ -435,6 +439,7 @@
 				4BDB761A1AF7F88E002DAC8A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4BDB761B1AF7F88E002DAC8A /* Build configuration list for PBXNativeTarget "SpriteKitBeginTests" */ = {
 			isa = XCConfigurationList;
@@ -443,6 +448,7 @@
 				4BDB761D1AF7F88E002DAC8A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

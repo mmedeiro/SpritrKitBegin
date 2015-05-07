@@ -72,17 +72,29 @@ extension CGPoint {
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
-    let player = SKSpriteNode(imageNamed: "player")
+    let player = SKSpriteNode(imageNamed: "hommer5")
     var monstersDestroyed = 0
+    var level = 1
+    let labelLevel = SKLabelNode(fontNamed: "Helvetica Neue Thin")
+    
+    
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
+        
+        //label nivel, dimensiona/configura a label; e altera o nivel de acordo com a quantidade de monstros que o usuario acerta (func projectileDidCollideWithMonster)!!
+        labelLevel.text = "Nivel: \(level)"
+        labelLevel.fontSize = 30
+        labelLevel.fontColor = SKColor.blackColor()
+        labelLevel.position = CGPoint(x: size.width/2, y: size.height/1.1)
+        addChild(labelLevel)
+       
         
         physicsWorld.gravity = CGVectorMake(0, 0)
         physicsWorld.contactDelegate = self
         
         backgroundColor = SKColor.whiteColor()
-        player.position = CGPoint(x: size.width * 0.1, y: size.height * 0.5)
+        player.position = CGPoint(x: size.width * 0.11, y: size.height * 0.5)
         
         self.addChild(player)
         
@@ -123,7 +135,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let touchLocation = touch.locationInNode(self)
         
         // 2 - Set up initial location of projectile
-        let projectile = SKSpriteNode(imageNamed: "projectile")
+        let projectile = SKSpriteNode(imageNamed: "donnut")
         projectile.position = player.position
         
         // 3 - Determine offset of location to projectile
@@ -162,15 +174,31 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func projectileDidCollideWithMonster(projetile: SKSpriteNode, monster: SKSpriteNode) {
         println("Hit")
+        
         projetile.removeFromParent()
         monster.removeFromParent()
         monstersDestroyed++
-        if(monstersDestroyed > 1) {
-            let reveal = SKTransition.flipHorizontalWithDuration(0.5)
-            let gameOverScene = GameOverScene (size: self.size, won: true)
-            self.view?.presentScene(gameOverScene, transition: reveal)
+        
+            if (monstersDestroyed == level) {
+                level++
+                labelLevel.text = "Nivel: \(level)"
+                monstersDestroyed = 0;
+               
         }
+        
     }
+
+    //
+    //        projetile.removeFromParent()
+    //        monster.removeFromParent()
+    //        monstersDestroyed++
+    //        if(monstersDestroyed > 1) {
+    //        else {
+    //            let reveal = SKTransition.flipHorizontalWithDuration(0.5)
+    //            let gameOverScene = GameOverScene (size: self.size, won: true)
+    //            self.view?.presentScene(gameOverScene, transition: reveal)
+    //            
+    //        }
     
     func didBeginContact(contact: SKPhysicsContact) {
         
@@ -209,7 +237,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func addMonster () {
         
         //Create Sprite
-        let monster = SKSpriteNode(imageNamed: "monster")
+        let monster = SKSpriteNode(imageNamed: "meg")
         
         //Determine where to spawn the monster along the Y axis
         let actualY = random(min: monster.size.height/2, max: size.height - monster.size.height/2)

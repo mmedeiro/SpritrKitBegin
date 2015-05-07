@@ -14,10 +14,10 @@ class GameOverScene: SKScene {
         super.init(size: size)
         
         //1
-        backgroundColor = SKColor.whiteColor()
+        backgroundColor = SKColor.purpleColor()
         
         //2
-        var message = won ? "Ganhooooou 🎉!" : "Perdeeeeeu 😢 "
+        var message = won ? "Ganhooooou 🎉" : "Perdeeeeeu 😢 "
         
         //3
         let label = SKLabelNode(fontNamed: "Chalkduster")
@@ -26,6 +26,14 @@ class GameOverScene: SKScene {
         label.fontColor = SKColor.blackColor()
         label.position = CGPoint(x: size.width/2, y: size.height/2)
         addChild(label)
+        
+        //teste
+        let labelAgain = SKLabelNode(fontNamed: "Chalkduster")
+        labelAgain.text = "Clique para jogar novamente"
+        labelAgain.fontSize = 40
+        labelAgain.fontColor = SKColor.blackColor()
+        labelAgain.position = CGPoint(x: size.width/4, y: size.height/2)
+        
         
         //4
         runAction(SKAction.sequence([
@@ -43,4 +51,8 @@ class GameOverScene: SKScene {
     required init(coder aDecoder: NSCoder){
         fatalError("init(coder: ) has not been implemented")
     }
+    
+    
 }
+
+
