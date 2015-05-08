@@ -7,6 +7,28 @@
 //
 
 import SpriteKit
+import AVFoundation
+
+var backgroundMusicPlayerFistScene: AVAudioPlayer!
+
+func playBackgroundMusicStart(filename: String) {
+    let url = NSBundle.mainBundle().URLForResource(filename, withExtension: nil)
+    if (url == nil) {
+        println("Could not find file: \(filename)")
+        return
+    }
+    
+    var error: NSError? = nil
+    backgroundMusicPlayerFistScene = AVAudioPlayer(contentsOfURL: url, error: &error)
+    if backgroundMusicPlayerFistScene == nil {
+        println("Could not create audio player: \(error!)")
+        return
+    }
+    
+    backgroundMusicPlayerFistScene.numberOfLoops = -1
+    backgroundMusicPlayerFistScene.prepareToPlay()
+    backgroundMusicPlayerFistScene.play()
+}
 
 class PlayGame: SKScene {
     
@@ -57,6 +79,7 @@ class PlayGame: SKScene {
             self.imgWelcome2.runAction(anima2)
         })
 
+       playBackgroundMusicStart("backMusic.mp3")
         
     }
     

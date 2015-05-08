@@ -26,7 +26,7 @@ func playBackgroundMusic(filename: String) {
         return
     }
     
-    backgroundMusicPlayer.numberOfLoops = -1
+    backgroundMusicPlayer.numberOfLoops = 1
     backgroundMusicPlayer.prepareToPlay()
     backgroundMusicPlayer.play()
 }
@@ -121,7 +121,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 ])
             ))
         
-        playBackgroundMusic("background-music-aac.caf")
+       // playBackgroundMusic("background-music-aac.caf")
     }
     
 //    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
@@ -185,7 +185,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         projectile.physicsBody?.usesPreciseCollisionDetection = true
         
         
-        runAction(SKAction.playSoundFileNamed("pew-pew-lei.caf", waitForCompletion: false))
+        runAction(SKAction.playSoundFileNamed("comedy.mp3", waitForCompletion: false))
     }
     
     func projectileDidCollideWithMonster(projetile: SKSpriteNode, monster: SKSpriteNode) {

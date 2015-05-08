@@ -10,15 +10,8 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="startImg" translatesAutoresizingMaskIntoConstraints="NO" id="G4h-fF-dW8">
-                    <rect key="frame" x="43" y="137" width="320" height="343"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="343" id="2qm-0b-ntc"/>
-                        <constraint firstAttribute="width" constant="320" id="hEi-gr-nw9"/>
-                    </constraints>
-                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Donuts for Meg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0nN-VF-7tZ">
-                    <rect key="frame" x="79" y="35" width="323" height="59"/>
+                    <rect key="frame" x="79" y="211" width="323" height="59"/>
                     <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="50"/>
                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
@@ -26,17 +19,12 @@
             </subviews>
             <color key="backgroundColor" red="0.99607843137254903" green="0.76470588235294112" blue="0.039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="G4h-fF-dW8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="43" id="Ky1-rJ-rB0"/>
-                <constraint firstAttribute="bottom" secondItem="G4h-fF-dW8" secondAttribute="bottom" id="OCp-VV-8No"/>
-                <constraint firstAttribute="centerX" secondItem="0nN-VF-7tZ" secondAttribute="centerX" id="ift-mZ-xl6"/>
-                <constraint firstItem="0nN-VF-7tZ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="35" id="u4W-Jk-NRU"/>
+                <constraint firstAttribute="centerX" secondItem="0nN-VF-7tZ" secondAttribute="centerX" id="QbG-Ue-OsE"/>
+                <constraint firstAttribute="centerY" secondItem="0nN-VF-7tZ" secondAttribute="centerY" id="YwH-1J-D0Z"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="548" y="455"/>
         </view>
     </objects>
-    <resources>
-        <image name="startImg" width="310" height="377"/>
-    </resources>
 </document>
