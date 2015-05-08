@@ -20,23 +20,24 @@ class GameOverScene: SKScene {
         
         
         //2
-        var message = won ? "Ganhooooou 🎉" : "You Looooose 😢 "
+        var message = won ? "Ganhooooou 🎉" : "You Looooose!"
 
+        
         
         //3
         let label = SKLabelNode(fontNamed: "Helvetica Neue Thin")
         label.text = message
-        label.fontSize = 40
+        label.fontSize = 30
         label.fontColor = SKColor.blackColor()
-        label.position = CGPoint(x: size.width/2, y: size.height/2)
+        label.position = CGPointMake(330, 320)
         addChild(label)
         
         //label para jogar novamente
         let labelAgain = SKLabelNode(fontNamed: "Helvetica Neue Thin")
-        labelAgain.text = " 👉🏻 Don't worry, tap to play again 👈🏻 "
+        labelAgain.text = " Don't worry, tap to play again "
         labelAgain.fontSize = 30
         labelAgain.fontColor = SKColor.blackColor()
-        labelAgain.position = CGPointMake(330, 25)
+        labelAgain.position = CGPointMake(330, 270)
         labelAgain.physicsBody = SKPhysicsBody(rectangleOfSize: labelAgain.frame.size)
         labelAgain.physicsBody?.dynamic = false
         labelAgain.name = "PlayAgain"
@@ -46,9 +47,15 @@ class GameOverScene: SKScene {
         let lblScore = SKLabelNode(fontNamed: "Helvetica Neue Thin")
         lblScore.fontSize = 20
         lblScore.fontColor = SKColor.whiteColor()
-        lblScore.position = CGPointMake(300, 300)
+        lblScore.position = CGPointMake(60, 150)
         lblScore.text = "Score: \(level)"
         addChild(lblScore)
+        
+        //imagem
+        let loseImage = SKSpriteNode(imageNamed: "gameLose")
+        
+        loseImage.position = CGPointMake(330, 90)
+        addChild(loseImage)
 
         
 
