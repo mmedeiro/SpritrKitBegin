@@ -10,42 +10,64 @@ import Foundation
 import SpriteKit
 
 class GameOverScene: SKScene {
+    var nivel : Int?
     init(size: CGSize, won: Bool) {
         super.init(size: size)
-        
+    
+            
         //1
-        backgroundColor = SKColor.purpleColor()
+        backgroundColor = SKColor(red: 255/255, green: 204/255, blue: 1/255, alpha: 1.0)
+        
         
         //2
-        var message = won ? "Ganhooooou 🎉" : "Perdeeeeeu 😢 "
+        var message = won ? "Ganhooooou 🎉" : "You Looooose 😢 "
+
         
         //3
-        let label = SKLabelNode(fontNamed: "Chalkduster")
+        let label = SKLabelNode(fontNamed: "Helvetica Neue Thin")
         label.text = message
         label.fontSize = 40
         label.fontColor = SKColor.blackColor()
         label.position = CGPoint(x: size.width/2, y: size.height/2)
         addChild(label)
         
-        //teste
-        let labelAgain = SKLabelNode(fontNamed: "Chalkduster")
-        labelAgain.text = "Clique para jogar novamente"
-        labelAgain.fontSize = 40
+        //label para jogar novamente
+        let labelAgain = SKLabelNode(fontNamed: "Helvetica Neue Thin")
+        labelAgain.text = " 👉🏻 Don't worry, tap to play again 👈🏻 "
+        labelAgain.fontSize = 30
         labelAgain.fontColor = SKColor.blackColor()
-        labelAgain.position = CGPoint(x: size.width/4, y: size.height/2)
+        labelAgain.position = CGPointMake(330, 25)
+        labelAgain.physicsBody = SKPhysicsBody(rectangleOfSize: labelAgain.frame.size)
+        labelAgain.physicsBody?.dynamic = false
+        labelAgain.name = "PlayAgain"
+        addChild(labelAgain)
         
+        //label Score
+        let lblScore = SKLabelNode(fontNamed: "Helvetica Neue Thin")
+        lblScore.fontSize = 20
+        lblScore.fontColor = SKColor.whiteColor()
+        lblScore.position = CGPointMake(300, 300)
+        lblScore.text = "Score: \(level)"
+        addChild(lblScore)
+
         
-        //4
-        runAction(SKAction.sequence([
-            SKAction.waitForDuration(3.0),
-            SKAction.runBlock(){
-                //5
-                let reveal = SKTransition.flipHorizontalWithDuration(0.5)
-                let scene = GameScene(size: size)
-                self.view?.presentScene(scene, transition:reveal)
-            }
-            ]))
+
     }
+    
+    override func touchesBegan(touches: Set<NSObject>, withEvent event: UIEvent) {
+        var local = touches.first as! UITouch
+        var localT = local.locationInNode(self)
+        
+        if let body = physicsWorld.bodyAtPoint(localT) {
+            // var oi = childNodeWithName("funcc")?.position = CGPointMake(350, 150)
+            if body.node!.name == "PlayAgain"{
+                level = 1
+                let reveal = SKTransition.flipHorizontalWithDuration(0.5)
+                 let scene = GameScene(size: size)
+                self.view?.presentScene(scene, transition:reveal)
+                println("entrou")
+                
+            } } }
 
     //6
     required init(coder aDecoder: NSCoder){

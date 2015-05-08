@@ -11,6 +11,7 @@ import AVFoundation
 
 var backgroundMusicPlayer: AVAudioPlayer!
 
+
 func playBackgroundMusic(filename: String) {
     let url = NSBundle.mainBundle().URLForResource(filename, withExtension: nil)
     if (url == nil) {
@@ -69,13 +70,15 @@ extension CGPoint {
     }
 }
 
+var level = 1
+var monstersDestroyed = 0
+
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     let player = SKSpriteNode(imageNamed: "hommer5")
-    var monstersDestroyed = 0
-    var level = 1
     let labelLevel = SKLabelNode(fontNamed: "Helvetica Neue Thin")
+    let labelNumberOfMonsters = SKLabelNode(fontNamed: "Helvetica Neue Thin")
     
     
     
@@ -83,17 +86,23 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         /* Setup your scene here */
         
         //label nivel, dimensiona/configura a label; e altera o nivel de acordo com a quantidade de monstros que o usuario acerta (func projectileDidCollideWithMonster)!!
-        labelLevel.text = "Nivel: \(level)"
+        labelLevel.text = "Level: \(level)"
         labelLevel.fontSize = 30
         labelLevel.fontColor = SKColor.blackColor()
         labelLevel.position = CGPoint(x: size.width/2, y: size.height/1.1)
         addChild(labelLevel)
+        
+        labelNumberOfMonsters.text = "Level: \(level)"
+        labelNumberOfMonsters.fontSize = 30
+        labelNumberOfMonsters.fontColor = SKColor.blackColor()
+        labelNumberOfMonsters.position = CGPointMake(20, 200)
+        //addChild(labelNumberOfMonsters)
        
         
         physicsWorld.gravity = CGVectorMake(0, 0)
         physicsWorld.contactDelegate = self
         
-        backgroundColor = SKColor.whiteColor()
+        backgroundColor = SKColor(red: 255/255, green: 204/255, blue: 1/255, alpha: 1.0)
         player.position = CGPoint(x: size.width * 0.11, y: size.height * 0.5)
         
         self.addChild(player)
@@ -179,26 +188,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         monster.removeFromParent()
         monstersDestroyed++
         
+        
             if (monstersDestroyed == level) {
                 level++
                 labelLevel.text = "Nivel: \(level)"
+ //               labelNumberOfMonsters.text = "Die: \ (monstersDestroyed)"
                 monstersDestroyed = 0;
+                
+                var salvar = NSUserDefaults().objectForKey("HighScore")
                
         }
         
     }
-
-    //
-    //        projetile.removeFromParent()
-    //        monster.removeFromParent()
-    //        monstersDestroyed++
-    //        if(monstersDestroyed > 1) {
-    //        else {
-    //            let reveal = SKTransition.flipHorizontalWithDuration(0.5)
-    //            let gameOverScene = GameOverScene (size: self.size, won: true)
-    //            self.view?.presentScene(gameOverScene, transition: reveal)
-    //            
-    //        }
     
     func didBeginContact(contact: SKPhysicsContact) {
         
@@ -221,10 +222,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
         }
     }
-   
-//    override func update(currentTime: CFTimeInterval) {
-//        /* Called before each frame is rendered */
-//    }
     
     func random() -> CGFloat {
         return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
