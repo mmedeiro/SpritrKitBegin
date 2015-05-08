@@ -185,7 +185,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         projectile.physicsBody?.usesPreciseCollisionDetection = true
         
         
-        runAction(SKAction.playSoundFileNamed("comedy.mp3", waitForCompletion: false))
+        runAction(SKAction.playSoundFileNamed("baby.mp3", waitForCompletion: false))
     }
     
     func projectileDidCollideWithMonster(projetile: SKSpriteNode, monster: SKSpriteNode) {
