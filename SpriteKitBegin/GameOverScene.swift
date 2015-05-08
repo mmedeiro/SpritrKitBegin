@@ -9,13 +9,14 @@
 import Foundation
 import SpriteKit
 
+var highScore = 0
+
 class GameOverScene: SKScene {
-    var nivel : Int?
     init(size: CGSize, won: Bool) {
         super.init(size: size)
     
             
-        //1
+        //Cor de fundo da cena (GameOver)
         backgroundColor = SKColor(red: 255/255, green: 204/255, blue: 1/255, alpha: 1.0)
         
         
@@ -24,7 +25,7 @@ class GameOverScene: SKScene {
 
         
         
-        //3
+        //Mostra mensagem de "perdeeeu"
         let label = SKLabelNode(fontNamed: "Helvetica Neue Thin")
         label.text = message
         label.fontSize = 30
@@ -45,19 +46,25 @@ class GameOverScene: SKScene {
         
         //label Score
         let lblScore = SKLabelNode(fontNamed: "Helvetica Neue Thin")
-        lblScore.fontSize = 20
+        lblScore.fontSize = 23
         lblScore.fontColor = SKColor.whiteColor()
-        lblScore.position = CGPointMake(60, 150)
+        lblScore.position = CGPointMake(60, 110)
         lblScore.text = "Score: \(level)"
         addChild(lblScore)
         
         //imagem
         let loseImage = SKSpriteNode(imageNamed: "gameLose")
-        
         loseImage.position = CGPointMake(330, 90)
         addChild(loseImage)
-
         
+        //highscore
+        let  lblHighScore = SKLabelNode(fontNamed: "Helvetica Neue Thin")
+        lblHighScore.fontSize = 23
+        lblHighScore.fontColor = SKColor.whiteColor()
+        lblHighScore.position = CGPointMake(83, 70)
+        highScore = NSUserDefaults.standardUserDefaults().integerForKey("high")
+        lblHighScore.text = "HighScore: \(highScore)"
+        //addChild(lblHighScore)
 
     }
     
@@ -66,9 +73,8 @@ class GameOverScene: SKScene {
         var localT = local.locationInNode(self)
         
         if let body = physicsWorld.bodyAtPoint(localT) {
-            // var oi = childNodeWithName("funcc")?.position = CGPointMake(350, 150)
             if body.node!.name == "PlayAgain"{
-                level = 1
+                //level = 1
                 let reveal = SKTransition.flipHorizontalWithDuration(0.5)
                  let scene = GameScene(size: size)
                 self.view?.presentScene(scene, transition:reveal)

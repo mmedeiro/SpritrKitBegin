@@ -76,7 +76,7 @@ var monstersDestroyed = 0
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
-    let player = SKSpriteNode(imageNamed: "hommer5")
+    let player = SKSpriteNode(imageNamed: "playerHommer")
     let labelLevel = SKLabelNode(fontNamed: "Helvetica Neue Thin")
     let labelNumberOfMonsters = SKLabelNode(fontNamed: "Helvetica Neue Thin")
     
@@ -84,6 +84,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didMoveToView(view: SKView) {
         /* Setup your scene here */
+        
+        //imagem de fundo
+        var bgImage = SKSpriteNode(imageNamed: "sala")
+        bgImage.position = CGPointMake(self.size.width/2, self.size.height/2)
+        
+        self.addChild(bgImage)
         
         //label nivel, dimensiona/configura a label; e altera o nivel de acordo com a quantidade de monstros que o usuario acerta (func projectileDidCollideWithMonster)!!
         labelLevel.text = "Level: \(level)"
@@ -101,6 +107,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         physicsWorld.gravity = CGVectorMake(0, 0)
         physicsWorld.contactDelegate = self
+        
         
         backgroundColor = SKColor(red: 255/255, green: 204/255, blue: 1/255, alpha: 1.0)
         player.position = CGPoint(x: size.width * 0.11, y: size.height * 0.5)
@@ -194,8 +201,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 labelLevel.text = "Nivel: \(level)"
  //               labelNumberOfMonsters.text = "Die: \ (monstersDestroyed)"
                 monstersDestroyed = 0;
-                
-                var salvar = NSUserDefaults().objectForKey("HighScore")
                
         }
         
@@ -234,7 +239,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func addMonster () {
         
         //Create Sprite
-        let monster = SKSpriteNode(imageNamed: "meg")
+        var monster = SKSpriteNode(imageNamed: "meg")
         
         //Determine where to spawn the monster along the Y axis
         let actualY = random(min: monster.size.height/2, max: size.height - monster.size.height/2)
@@ -246,9 +251,61 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         //Add the monster to the scene
         addChild(monster)
+
         
         //Determine speed of the monster
-        let actualDuration = random(min: CGFloat(2.0), max: CGFloat(4.0))
+        var actualDuration = random(min: CGFloat(2.0), max: CGFloat(4.0))
+        
+       //aumento da velocidade de acordo com o nivel
+        if (level > 2) {
+            actualDuration = random(min: CGFloat(2.5), max: CGFloat(3.0))
+            
+        }
+        
+        if (level > 5) {
+            actualDuration = random(min: CGFloat(2.0), max: CGFloat(2.0))
+        }
+        
+        if (level > 8) {
+            actualDuration = random(min: CGFloat(1.8), max: CGFloat(1.0))
+        }
+        
+        if (level > 11) {
+            actualDuration = random(min: CGFloat(1.5), max: CGFloat(1.0))
+        }
+        
+        if (level > 14) {
+            actualDuration = random(min: CGFloat(1.3), max: CGFloat(1.0))
+        }
+        
+        if (level > 17) {
+            actualDuration = random(min: CGFloat(1.0), max: CGFloat(1.0))
+        }
+        
+        if (level > 20) {
+            actualDuration = random(min: CGFloat(0.8), max: CGFloat(1.0))
+        }
+        
+        if (level > 23) {
+            actualDuration = random(min: CGFloat(0.7), max: CGFloat(1.0))
+        }
+        
+        if (level > 26) {
+            actualDuration = random(min: CGFloat(0.6), max: CGFloat(1.0))
+        }
+        
+        if (level > 29) {
+            actualDuration = random(min: CGFloat(0.5), max: CGFloat(1.0))
+        }
+        
+        if (level > 32) {
+            actualDuration = random(min: CGFloat(0.4), max: CGFloat(1.0))
+        }
+        
+        if (level > 35) {
+            actualDuration = random(min: CGFloat(0.3), max: CGFloat(1.0))
+        }
+        
         
         //Create the actions
         let actionMove = SKAction.moveTo(CGPoint(x: -monster.size.width/2, y: actualY), duration: NSTimeInterval(actualDuration))
@@ -259,6 +316,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let reveal = SKTransition.flipHorizontalWithDuration(0.5)
             let gameOverScene = GameOverScene(size: self.size, won: false)
             self.view?.presentScene(gameOverScene, transition: reveal)
+            level = 1
+        
+            if (level > highScore) {
+                NSUserDefaults.standardUserDefaults().setInteger(level, forKey: "high")
+            }
         }
         
         monster.runAction(SKAction.sequence([actionMove, loseAction, actionMoveDone]))
